@@ -25,7 +25,7 @@ class Converter
     const INCH_TO_CM = 2.54;
     const INCH_TO_TWIP = 1440;
     const INCH_TO_PIXEL = 96;
-    const INCH_TO_POINT = 72;
+    const INCH_TO_POINT = 96; // updated due to the client requirements
     const INCH_TO_PICA = 6;
     const PIXEL_TO_EMU = 9525;
     const DEGREE_TO_ANGLE = 60000;

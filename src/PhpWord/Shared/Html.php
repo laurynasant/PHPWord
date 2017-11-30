@@ -291,7 +291,7 @@ class Html
         // if ($attributes->getNamedItem('width') !== null) {
         // $newElement->setWidth($attributes->getNamedItem('width')->value);
         // }
-
+        //
         // if ($attributes->getNamedItem('height') !== null) {
         // $newElement->setHeight($attributes->getNamedItem('height')->value);
         // }
@@ -332,10 +332,10 @@ class Html
     {
         $cellStyles = self::recursiveParseStylesInHierarchy($node, $styles['cell']);
 
-        $colspan = $node->getAttribute('colspan');
-        if (!empty($colspan)) {
-            $cellStyles['gridSpan'] = $colspan - 0;
-        }
+        // $colspan = $node->getAttribute('colspan');
+        // if (!empty($colspan)) {
+        //     $cellStyles['gridSpan'] = $colspan - 0;
+        // }
 
         return $element->addCell(null, $cellStyles);
     }
@@ -493,10 +493,10 @@ class Html
                     }
                     break;
                 case 'border':
-                    if (preg_match('/([0-9]+[^0-9]*)\s+(\#[a-fA-F0-9]+)\s+([a-z]+)/', $cValue, $matches)) {
+                    if (preg_match('/([0-9]+[^0-9]*)\s+([a-z]+)\s+rgb\(([0-9]+,\s+[0-9]+,\s+[0-9]+)\)/', $cValue, $matches)) {
                         $styles['borderSize'] = Converter::cssToPoint($matches[1]);
-                        $styles['borderColor'] = trim($matches[2], '#');
-                        $styles['borderStyle'] = self::mapBorderStyle($matches[3]);
+                        $styles['borderColor'] = str_replace(',','',$matches[3]);
+                        $styles['borderStyle'] = self::mapBorderStyle($matches[2]);
                     }
                     break;
             }
